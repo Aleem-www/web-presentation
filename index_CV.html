@@ -4,85 +4,261 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Aleem Ahmad - Professional CV</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" integrity="sha512-DTOQO9RWCH3ppGqcWaEA1BIZOC6xxalwEsw9c2QQeAIftl+Vegovlnee1c9QX4TctnWMn13TZye+giMm8e2LwA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
   <style>
     body {
       font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-      background: linear-gradient(to right, #0f0f0f, #1a1a1a);
+      background: linear-gradient(135deg, #e7e6e4 0%, #d9d8d6 100%);
       margin: 0;
       padding: 0;
-      color: #f1f1f1;
+      color: #1b1b1b;
+      line-height: 1.7;
     }
     .container {
       max-width: 960px;
-      margin: 50px auto;
-      background: #1e1e1e;
-      padding: 40px;
-      border-radius: 10px;
-      box-shadow: 0 0 30px rgba(0, 255, 180, 0.1);
+      margin: 30px auto;
+      background: #ffffff;
+      padding: 30px;
+      border-radius: 12px;
+      box-shadow: 0 6px 20px rgba(0, 0, 0, 0.15);
       animation: fadeIn 1.5s ease-in-out;
     }
     @keyframes fadeIn {
-      from { opacity: 0; transform: translateY(30px); }
-      to { opacity: 1; transform: translateY(0); }
+      0% { opacity: 0; transform: translateY(20px); }
+      100% { opacity: 1; transform: translateY(0); }
     }
     .header {
       display: flex;
       align-items: center;
       gap: 20px;
-      border-bottom: 2px solid #00ffc3;
-      padding-bottom: 20px;
+      padding: 20px;
+      background: linear-gradient(90deg, #f8f8f8, #ffffff);
+      border-radius: 10px;
+      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+      flex-wrap: wrap;
     }
     .header img {
-      width: 120px;
-      height: 120px;
+      width: 110px;
+      height: 110px;
       object-fit: cover;
       border-radius: 50%;
-      border: 3px solid #00ffc3;
+      border: 4px solid #333;
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+    }
+    .header img:hover {
+      transform: scale(1.08);
+      box-shadow: 0 0 15px rgba(0, 0, 0, 0.2);
     }
     h1 {
       margin: 0;
       font-size: 2.5rem;
-      color: #00ffc3;
+      color: #222;
+      font-weight: 700;
+      letter-spacing: 0.5px;
+      animation: fadeUp 1s ease-in-out;
+    }
+    @keyframes fadeUp {
+      from { opacity: 0; transform: translateY(15px); }
+      to { opacity: 1; transform: translateY(0); }
     }
     .section {
       margin-top: 30px;
+      padding: 20px;
+      background: #fafafa;
+      border-radius: 8px;
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+    }
+    .section:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
     }
     .section h2 {
-      border-bottom: 2px solid #00ffc3;
-      padding-bottom: 5px;
-      color: #00ffc3;
+      margin: 0 0 12px 0;
+      font-size: 1.5rem;
+      color: #1f1f1f;
+      border-bottom: 3px solid #333;
+      padding-bottom: 8px;
+      font-weight: 600;
+      animation: fadeUp 1.2s ease-in-out;
+    }
+    p, li {
+      font-size: 0.95rem;
+      color: #333;
     }
     ul {
-      padding-left: 20px;
+      padding-left: 25px;
+      margin: 0;
     }
     li {
-      margin-bottom: 8px;
+      margin-bottom: 12px;
+      position: relative;
+      padding-left: 15px;
+    }
+    li:before {
+      content: "•";
+      position: absolute;
+      left: 0;
+      color: #333;
+      font-size: 1.2rem;
     }
     .contact, .social {
-      font-size: 0.95rem;
-      line-height: 1.5;
+      font-size: 0.9rem;
+      line-height: 1.8;
+    }
+    .contact p {
+      margin: 8px 0;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+    .contact p:before {
+      content: "→";
+      color: #333;
+      font-weight: bold;
     }
     .social a {
-      margin-right: 15px;
-      color: #00ffc3;
+      margin: 8px 12px 8px 0;
+      display: inline-block;
+      padding: 8px 20px;
+      border-radius: 20px;
+      background: linear-gradient(45deg, #1a1a1a, #2c2c2c);
+      color: #ffffff;
+      font-size: 1.1rem;
       text-decoration: none;
-      transition: color 0.3s ease;
+      transition: background 0.3s ease, transform 0.2s ease;
+      min-width: 60px;
+      text-align: center;
+      display: flex;
+      align-items: center;
+      justify-content: center;
     }
     .social a:hover {
+      background: #444;
+      transform: scale(1.1);
+    }
+    /* Stylized Skills Section */
+    .skills-list {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+      gap: 10px;
+      padding: 0;
+      list-style: none;
+    }
+    .skills-list li {
+      background: linear-gradient(45deg, #1a1a1a, #2c2c2c);
       color: #ffffff;
+      padding: 10px 15px;
+      border-radius: 20px;
+      text-align: center;
+      font-size: 0.9rem;
+      font-weight: 500;
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+      position: relative;
+      margin-bottom: 0;
+    }
+    .skills-list li:hover {
+      transform: scale(1.05);
+      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+      background: #444;
+    }
+    .skills-list li:before {
+      content: none;
     }
     .footer {
       text-align: center;
-      margin-top: 50px;
-      font-size: 0.9rem;
-      color: #888;
+      margin-top: 40px;
+      font-size: 0.85rem;
+      color: #666;
+      padding-top: 25px;
+      border-top: 2px solid #ddd;
+      letter-spacing: 0.5px;
+    }
+
+    /* Mobile Responsiveness */
+    @media (max-width: 768px) {
+      .container {
+        margin: 15px;
+        padding: 20px;
+      }
+      .header {
+        flex-direction: column;
+        text-align: center;
+        padding: 15px;
+      }
+      .header img {
+        width: 90px;
+        height: 90px;
+      }
+      h1 {
+        font-size: 2rem;
+      }
+      .section {
+        padding: 15px;
+      }
+      .section h2 {
+        font-size: 1.3rem;
+      }
+      .contact, .social {
+        font-size: 0.85rem;
+      }
+      .social a {
+        padding: 6px 16px;
+        font-size: 1rem;
+        min-width: 50px;
+      }
+      .skills-list {
+        grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+        gap: 8px;
+      }
+      .skills-list li {
+        font-size: 0.85rem;
+        padding: 8px 12px;
+      }
+      li {
+        font-size: 0.9rem;
+      }
+    }
+    @media (max-width: 480px) {
+      h1 {
+        font-size: 1.7rem;
+      }
+      .section h2 {
+        font-size: 1.2rem;
+      }
+      .header img {
+        width: 80px;
+        height: 80px;
+      }
+      .contact, .social {
+        font-size: 0.8rem;
+      }
+      .social a {
+        margin: 5px;
+        padding: 5px 12px;
+        min-width: 45px;
+        font-size: 0.9rem;
+      }
+      .skills-list {
+        grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
+        gap: 6px;
+      }
+      .skills-list li {
+        font-size: 0.8rem;
+        padding: 6px 10px;
+      }
+      .footer {
+        font-size: 0.75rem;
+      }
+      .section {
+        padding: 12px;
+      }
     }
   </style>
 </head>
 <body>
   <div class="container">
     <div class="header">
-      <img src="./Web_Photo_Editor-removebg-preview.png" alt="Aleem Ahmad Photo" />
+      <img src="./Web_Photo_Editor.jpg" alt="Aleem Ahmad Photo" />
       <div>
         <h1>Aleem Ahmad</h1>
         <div class="contact">
@@ -91,9 +267,9 @@
           <p>Date of Birth: 23 July 2003</p>
         </div>
         <div class="social">
-          <a href="https://www.tiktok.com/@greatstabler" target="_blank">TikTok</a>
-          <a href="https://www.instagram.com/greatstabler" target="_blank">Instagram</a>
-          <a href="https://www.youtube.com/@GreatStabler" target="_blank">YouTube</a>
+          <a href="https://www.tiktok.com/@greatstabler" target="_blank"><i class="fab fa-tiktok"></i></a>
+          <a href="https://www.instagram.com/greatstabler" target="_blank"><i class="fab fa-instagram"></i></a>
+          <a href="https://www.youtube.com/@GreatStabler" target="_blank"><i class="fab fa-youtube"></i></a>
         </div>
       </div>
     </div>
@@ -132,12 +308,13 @@
 
     <div class="section">
       <h2>Skills</h2>
-      <ul>
-        <li>Microsoft Office Suite (Word, Excel, PowerPoint)</li>
-        <li>Adobe Creative Cloud (Basic Level)</li>
+      <ul class="skills-list">
+        <li>Microsoft Office Suite</li>
+        <li>Adobe Creative Cloud (Basic)</li>
         <li>Basic Graphic Design</li>
         <li>Basic Video Editing</li>
-        <li>Computer Literacy (General IT Skills)</li>
+        <li>Basic Web Development</li>
+        <li>Computer Literacy</li>
         <li>Administrative Support</li>
         <li>Customer Service</li>
         <li>Management</li>
@@ -154,7 +331,7 @@
     </div>
 
     <div class="footer">
-      &copy; 2025 Aleem Ahmad | Designed for web presentation
+      © 2025 Aleem Ahmad | Designed for web presentation
     </div>
   </div>
 </body>
