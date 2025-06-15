@@ -6,333 +6,647 @@
   <title>Aleem Ahmad - Professional CV</title>
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" integrity="sha512-DTOQO9RWCH3ppGqcWaEA1BIZOC6xxalwEsw9c2QQeAIftl+Vegovlnee1c9QX4TctnWMn13TZye+giMm8e2LwA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
   <style>
-    body {
-      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-      background: linear-gradient(135deg, #e7e6e4 0%, #d9d8d6 100%);
+    * {
       margin: 0;
       padding: 0;
+      box-sizing: border-box;
+    }
+    
+    body {
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+      min-height: 100vh;
       color: #1b1b1b;
       line-height: 1.7;
+      overflow-x: hidden;
+      position: relative;
     }
+    
+    /* Animated background particles */
+    .particles {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      pointer-events: none;
+      z-index: 1;
+    }
+    
+    .particle {
+      position: absolute;
+      width: 4px;
+      height: 4px;
+      background: rgba(255, 255, 255, 0.3);
+      border-radius: 50%;
+      animation: float 6s ease-in-out infinite;
+    }
+    
+    .particle:nth-child(1) { left: 10%; animation-delay: 0s; }
+    .particle:nth-child(2) { left: 20%; animation-delay: 1s; }
+    .particle:nth-child(3) { left: 30%; animation-delay: 2s; }
+    .particle:nth-child(4) { left: 40%; animation-delay: 3s; }
+    .particle:nth-child(5) { left: 50%; animation-delay: 4s; }
+    .particle:nth-child(6) { left: 60%; animation-delay: 5s; }
+    .particle:nth-child(7) { left: 70%; animation-delay: 0.5s; }
+    .particle:nth-child(8) { left: 80%; animation-delay: 1.5s; }
+    .particle:nth-child(9) { left: 90%; animation-delay: 2.5s; }
+    
+    @keyframes float {
+      0%, 100% { transform: translateY(100vh) rotate(0deg); opacity: 0; }
+      10% { opacity: 1; }
+      90% { opacity: 1; }
+      100% { transform: translateY(-100px) rotate(360deg); opacity: 0; }
+    }
+    
     .container {
-      max-width: 960px;
-      margin: 30px auto;
-      background: #ffffff;
-      padding: 30px;
-      border-radius: 12px;
-      box-shadow: 0 6px 20px rgba(0, 0, 0, 0.15);
-      animation: fadeIn 1.5s ease-in-out;
+      max-width: 1000px;
+      margin: 0 auto;
+      padding: 20px;
+      position: relative;
+      z-index: 10;
     }
-    @keyframes fadeIn {
-      0% { opacity: 0; transform: translateY(20px); }
-      100% { opacity: 1; transform: translateY(0); }
+    
+    .cv-card {
+      background: rgba(255, 255, 255, 0.95);
+      backdrop-filter: blur(20px);
+      border-radius: 20px;
+      padding: 40px;
+      margin: 30px 0;
+      box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
+      border: 1px solid rgba(255, 255, 255, 0.2);
+      animation: slideUp 0.8s ease-out;
+      position: relative;
+      overflow: hidden;
     }
+    
+    .cv-card::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: -100%;
+      width: 100%;
+      height: 100%;
+      background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.4), transparent);
+      transition: left 0.5s;
+    }
+    
+    .cv-card:hover::before {
+      left: 100%;
+    }
+    
+    @keyframes slideUp {
+      from {
+        opacity: 0;
+        transform: translateY(50px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+    
     .header {
       display: flex;
       align-items: center;
-      gap: 20px;
-      padding: 20px;
-      background: linear-gradient(90deg, #f8f8f8, #ffffff);
-      border-radius: 10px;
-      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+      gap: 30px;
+      margin-bottom: 30px;
       flex-wrap: wrap;
+      position: relative;
     }
-    .header img {
-      width: 110px;
-      height: 110px;
+    
+    .profile-img-container {
+      position: relative;
+      width: 150px;
+      height: 150px;
+    }
+    
+    .profile-img {
+      width: 150px;
+      height: 150px;
       object-fit: cover;
       border-radius: 50%;
-      border: 4px solid #333;
-      transition: transform 0.3s ease, box-shadow 0.3s ease;
+      border: 4px solid transparent;
+      background: linear-gradient(45deg, #667eea, #764ba2);
+      padding: 4px;
+      transition: all 0.3s ease;
+      animation: pulse 2s ease-in-out infinite;
     }
-    .header img:hover {
-      transform: scale(1.08);
-      box-shadow: 0 0 15px rgba(0, 0, 0, 0.2);
+    
+    @keyframes pulse {
+      0%, 100% { transform: scale(1); }
+      50% { transform: scale(1.05); }
     }
-    h1 {
-      margin: 0;
-      font-size: 2.5rem;
-      color: #222;
-      font-weight: 700;
-      letter-spacing: 0.5px;
-      animation: fadeUp 1s ease-in-out;
+    
+    .profile-img:hover {
+      transform: scale(1.1) rotate(5deg);
+      box-shadow: 0 15px 30px rgba(0, 0, 0, 0.3);
     }
-    @keyframes fadeUp {
-      from { opacity: 0; transform: translateY(15px); }
-      to { opacity: 1; transform: translateY(0); }
-    }
-    .section {
-      margin-top: 30px;
-      padding: 20px;
-      background: #fafafa;
-      border-radius: 8px;
-      transition: transform 0.3s ease, box-shadow 0.3s ease;
-    }
-    .section:hover {
-      transform: translateY(-5px);
-      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
-    }
-    .section h2 {
-      margin: 0 0 12px 0;
-      font-size: 1.5rem;
-      color: #1f1f1f;
-      border-bottom: 3px solid #333;
-      padding-bottom: 8px;
-      font-weight: 600;
-      animation: fadeUp 1.2s ease-in-out;
-    }
-    p, li {
-      font-size: 0.95rem;
-      color: #333;
-    }
-    ul {
-      padding-left: 25px;
-      margin: 0;
-    }
-    li {
-      margin-bottom: 12px;
-      position: relative;
-      padding-left: 15px;
-    }
-    li:before {
-      content: "•";
+    
+    .profile-ring {
       position: absolute;
-      left: 0;
-      color: #333;
-      font-size: 1.2rem;
+      top: -10px;
+      left: -10px;
+      width: 170px;
+      height: 170px;
+      border: 2px solid transparent;
+      border-radius: 50%;
+      background: linear-gradient(45deg, #667eea, #764ba2);
+      animation: rotate 3s linear infinite;
+      z-index: -1;
     }
-    .contact, .social {
-      font-size: 0.9rem;
-      line-height: 1.8;
+    
+    @keyframes rotate {
+      from { transform: rotate(0deg); }
+      to { transform: rotate(360deg); }
     }
-    .contact p {
-      margin: 8px 0;
+    
+    .name-section h1 {
+      font-size: 3rem;
+      font-weight: 700;
+      background: linear-gradient(45deg, #667eea, #764ba2);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+      margin-bottom: 15px;
+      animation: glow 2s ease-in-out infinite alternate;
+    }
+    
+    @keyframes glow {
+      from { text-shadow: 0 0 10px rgba(102, 126, 234, 0.5); }
+      to { text-shadow: 0 0 20px rgba(102, 126, 234, 0.8); }
+    }
+    
+    .contact-info {
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+    }
+    
+    .contact-item {
       display: flex;
       align-items: center;
-      gap: 8px;
+      gap: 10px;
+      padding: 8px 15px;
+      background: rgba(102, 126, 234, 0.1);
+      border-radius: 25px;
+      transition: all 0.3s ease;
+      border: 1px solid transparent;
     }
-    .contact p:before {
-      content: "→";
-      color: #333;
-      font-weight: bold;
+    
+    .contact-item:hover {
+      background: rgba(102, 126, 234, 0.2);
+      transform: translateX(10px);
+      border-color: rgba(102, 126, 234, 0.3);
     }
-    .social a {
-      margin: 8px 12px 8px 0;
-      display: inline-block;
-      padding: 8px 20px;
-      border-radius: 20px;
-      background: linear-gradient(45deg, #1a1a1a, #2c2c2c);
-      color: #ffffff;
+    
+    .contact-item i {
+      color: #667eea;
       font-size: 1.1rem;
-      text-decoration: none;
-      transition: background 0.3s ease, transform 0.2s ease;
-      min-width: 60px;
+      width: 20px;
       text-align: center;
+    }
+    
+    .social-links {
+      display: flex;
+      gap: 15px;
+      margin-top: 15px;
+    }
+    
+    .social-link {
+      width: 50px;
+      height: 50px;
+      border-radius: 50%;
+      background: linear-gradient(45deg, #667eea, #764ba2);
+      color: white;
       display: flex;
       align-items: center;
       justify-content: center;
-    }
-    .social a:hover {
-      background: #444;
-      transform: scale(1.1);
-    }
-    /* Stylized Skills Section */
-    .skills-list {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
-      gap: 10px;
-      padding: 0;
-      list-style: none;
-    }
-    .skills-list li {
-      background: linear-gradient(45deg, #1a1a1a, #2c2c2c);
-      color: #ffffff;
-      padding: 10px 15px;
-      border-radius: 20px;
-      text-align: center;
-      font-size: 0.9rem;
-      font-weight: 500;
-      transition: transform 0.3s ease, box-shadow 0.3s ease;
+      text-decoration: none;
+      font-size: 1.2rem;
+      transition: all 0.3s ease;
       position: relative;
-      margin-bottom: 0;
+      overflow: hidden;
     }
-    .skills-list li:hover {
-      transform: scale(1.05);
-      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
-      background: #444;
+    
+    .social-link::before {
+      content: '';
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      width: 0;
+      height: 0;
+      background: rgba(255, 255, 255, 0.3);
+      border-radius: 50%;
+      transition: all 0.3s ease;
+      transform: translate(-50%, -50%);
     }
-    .skills-list li:before {
-      content: none;
+    
+    .social-link:hover::before {
+      width: 60px;
+      height: 60px;
     }
+    
+    .social-link:hover {
+      transform: translateY(-5px) scale(1.1);
+      box-shadow: 0 10px 20px rgba(0, 0, 0, 0.3);
+    }
+    
+    .section {
+      margin: 30px 0;
+      padding: 25px;
+      background: rgba(255, 255, 255, 0.7);
+      border-radius: 15px;
+      border-left: 5px solid #667eea;
+      transition: all 0.3s ease;
+      position: relative;
+      overflow: hidden;
+    }
+    
+    .section::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: -100%;
+      width: 100%;
+      height: 100%;
+      background: linear-gradient(90deg, transparent, rgba(102, 126, 234, 0.1), transparent);
+      transition: left 0.5s;
+    }
+    
+    .section:hover::before {
+      left: 100%;
+    }
+    
+    .section:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 15px 30px rgba(0, 0, 0, 0.1);
+      border-left-width: 8px;
+    }
+    
+    .section h2 {
+      font-size: 1.8rem;
+      color: #333;
+      margin-bottom: 15px;
+      position: relative;
+      display: inline-block;
+    }
+    
+    .section h2::after {
+      content: '';
+      position: absolute;
+      bottom: -5px;
+      left: 0;
+      width: 0;
+      height: 3px;
+      background: linear-gradient(45deg, #667eea, #764ba2);
+      transition: width 0.3s ease;
+    }
+    
+    .section:hover h2::after {
+      width: 100%;
+    }
+    
+    .skills-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 15px;
+      margin-top: 20px;
+    }
+    
+    .skill-item {
+      background: linear-gradient(45deg, #667eea, #764ba2);
+      color: white;
+      padding: 15px 20px;
+      border-radius: 25px;
+      text-align: center;
+      font-weight: 500;
+      transition: all 0.3s ease;
+      position: relative;
+      overflow: hidden;
+      cursor: pointer;
+    }
+    
+    .skill-item::before {
+      content: '';
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      width: 0;
+      height: 0;
+      background: rgba(255, 255, 255, 0.2);
+      border-radius: 50%;
+      transition: all 0.3s ease;
+      transform: translate(-50%, -50%);
+    }
+    
+    .skill-item:hover::before {
+      width: 300px;
+      height: 300px;
+    }
+    
+    .skill-item:hover {
+      transform: translateY(-5px) scale(1.05);
+      box-shadow: 0 10px 25px rgba(0, 0, 0, 0.3);
+    }
+    
+    .experience-item {
+      margin-bottom: 25px;
+      padding: 20px;
+      background: rgba(102, 126, 234, 0.05);
+      border-radius: 10px;
+      border-left: 4px solid #667eea;
+      transition: all 0.3s ease;
+    }
+    
+    .experience-item:hover {
+      background: rgba(102, 126, 234, 0.1);
+      transform: translateX(10px);
+    }
+    
+    .experience-title {
+      font-weight: bold;
+      color: #333;
+      font-size: 1.1rem;
+      margin-bottom: 10px;
+    }
+    
+    .experience-details {
+      color: #666;
+      line-height: 1.6;
+    }
+    
+    .language-item {
+      display: flex;
+      align-items: center;
+      gap: 15px;
+      margin-bottom: 15px;
+      padding: 10px 15px;
+      background: rgba(102, 126, 234, 0.05);
+      border-radius: 10px;
+      transition: all 0.3s ease;
+    }
+    
+    .language-item:hover {
+      background: rgba(102, 126, 234, 0.1);
+      transform: translateX(10px);
+    }
+    
+    .language-flag {
+      width: 30px;
+      height: 20px;
+      border-radius: 3px;
+      background: linear-gradient(45deg, #667eea, #764ba2);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: white;
+      font-size: 0.8rem;
+      font-weight: bold;
+    }
+    
     .footer {
       text-align: center;
-      margin-top: 40px;
-      font-size: 0.85rem;
+      padding: 20px;
       color: #666;
-      padding-top: 25px;
-      border-top: 2px solid #ddd;
-      letter-spacing: 0.5px;
+      font-size: 0.9rem;
+      border-top: 1px solid rgba(102, 126, 234, 0.2);
+      margin-top: 30px;
     }
-
+    
     /* Mobile Responsiveness */
     @media (max-width: 768px) {
       .container {
-        margin: 15px;
+        padding: 10px;
+      }
+      
+      .cv-card {
         padding: 20px;
       }
+      
       .header {
         flex-direction: column;
         text-align: center;
-        padding: 15px;
+        gap: 20px;
       }
-      .header img {
-        width: 90px;
-        height: 90px;
+      
+      .profile-img-container {
+        width: 120px;
+        height: 120px;
       }
-      h1 {
+      
+      .profile-img {
+        width: 120px;
+        height: 120px;
+      }
+      
+      .profile-ring {
+        width: 140px;
+        height: 140px;
+        top: -10px;
+        left: -10px;
+      }
+      
+      .name-section h1 {
         font-size: 2rem;
       }
+      
+      .skills-grid {
+        grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+        gap: 10px;
+      }
+      
+      .social-links {
+        justify-content: center;
+      }
+    }
+    
+    @media (max-width: 480px) {
+      .name-section h1 {
+        font-size: 1.8rem;
+      }
+      
       .section {
         padding: 15px;
       }
-      .section h2 {
-        font-size: 1.3rem;
-      }
-      .contact, .social {
-        font-size: 0.85rem;
-      }
-      .social a {
-        padding: 6px 16px;
-        font-size: 1rem;
-        min-width: 50px;
-      }
-      .skills-list {
-        grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
-        gap: 8px;
-      }
-      .skills-list li {
-        font-size: 0.85rem;
-        padding: 8px 12px;
-      }
-      li {
-        font-size: 0.9rem;
-      }
-    }
-    @media (max-width: 480px) {
-      h1 {
-        font-size: 1.7rem;
-      }
-      .section h2 {
-        font-size: 1.2rem;
-      }
-      .header img {
-        width: 80px;
-        height: 80px;
-      }
-      .contact, .social {
-        font-size: 0.8rem;
-      }
-      .social a {
-        margin: 5px;
-        padding: 5px 12px;
-        min-width: 45px;
-        font-size: 0.9rem;
-      }
-      .skills-list {
-        grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
-        gap: 6px;
-      }
-      .skills-list li {
-        font-size: 0.8rem;
-        padding: 6px 10px;
-      }
-      .footer {
-        font-size: 0.75rem;
-      }
-      .section {
-        padding: 12px;
+      
+      .skills-grid {
+        grid-template-columns: 1fr;
       }
     }
   </style>
 </head>
 <body>
+  <div class="particles">
+    <div class="particle"></div>
+    <div class="particle"></div>
+    <div class="particle"></div>
+    <div class="particle"></div>
+    <div class="particle"></div>
+    <div class="particle"></div>
+    <div class="particle"></div>
+    <div class="particle"></div>
+    <div class="particle"></div>
+  </div>
+
   <div class="container">
-    <div class="header">
-      <img src="./Web_Photo_Editor.jpg" alt="Aleem Ahmad Photo" />
-      <div>
-        <h1>Aleem Ahmad</h1>
-        <div class="contact">
-          <p>Email: connectwithaleem@gmail.com</p>
-          <p>Contact: +92 328 5331580</p>
-          <p>Date of Birth: 23 July 2003</p>
+    <div class="cv-card">
+      <div class="header">
+        <div class="profile-img-container">
+          <div class="profile-ring"></div>
+          <img src="./pic.jpg" alt="Aleem Ahmad Photo" class="profile-img" />
         </div>
-        <div class="social">
-          <a href="https://www.tiktok.com/@greatstabler" target="_blank"><i class="fab fa-tiktok"></i></a>
-          <a href="https://www.instagram.com/greatstabler" target="_blank"><i class="fab fa-instagram"></i></a>
-          <a href="https://www.youtube.com/@GreatStabler" target="_blank"><i class="fab fa-youtube"></i></a>
+        <div class="name-section">
+          <h1>Aleem Ahmad</h1>
+          <div class="contact-info">
+            <div class="contact-item">
+              <i class="fas fa-envelope"></i>
+              <span>connectwithaleem@gmail.com</span>
+            </div>
+            <div class="contact-item">
+              <i class="fas fa-phone"></i>
+              <span>+92 328 5331580</span>
+            </div>
+            <div class="contact-item">
+              <i class="fas fa-birthday-cake"></i>
+              <span>23 July 2003</span>
+            </div>
+          </div>
+          <div class="social-links">
+            <a href="https://www.tiktok.com/@greatstabler" target="_blank" class="social-link">
+              <i class="fab fa-tiktok"></i>
+            </a>
+            <a href="https://www.instagram.com/greatstabler" target="_blank" class="social-link">
+              <i class="fab fa-instagram"></i>
+            </a>
+            <a href="https://www.youtube.com/@GreatStabler" target="_blank" class="social-link">
+              <i class="fab fa-youtube"></i>
+            </a>
+          </div>
         </div>
       </div>
-    </div>
 
-    <div class="section">
-      <h2>Professional Summary</h2>
-      <p>Motivated and self-driven content creator with a strong interest in technology and digital media. Experienced in administrative support and content production with a proven record of managing gaming content on social media platforms.</p>
-    </div>
+      <div class="section">
+        <h2><i class="fas fa-user-circle"></i> Professional Summary</h2>
+        <p>Motivated and self-driven content creator with a strong interest in technology and digital media. Experienced in administrative support and content production with a proven record of managing gaming content on social media platforms.</p>
+      </div>
 
-    <div class="section">
-      <h2>Career Objective</h2>
-      <p>Seeking a long-term position in an office environment related to computer operations where I can meet my financial needs while enhancing and sharpening my technical and administrative skills.</p>
-    </div>
+      <div class="section">
+        <h2><i class="fas fa-bullseye"></i> Career Objective</h2>
+        <p>Seeking a long-term position in an office environment related to computer operations where I can meet my financial needs while enhancing and sharpening my technical and administrative skills.</p>
+      </div>
 
-    <div class="section">
-      <h2>Education</h2>
-      <ul>
-        <li>Matriculation (High School) – Completed, Pakistan</li>
-      </ul>
-    </div>
+      <div class="section">
+        <h2><i class="fas fa-graduation-cap"></i> Education</h2>
+        <div class="experience-item">
+          <div class="experience-title">Matriculation (High School)</div>
+          <div class="experience-details">Completed - Pakistan</div>
+        </div>
+      </div>
 
-    <div class="section">
-      <h2>Professional Experience</h2>
-      <ul>
-        <li><strong>Admin Assistant – The Citizens Foundation (NGO)</strong><br />
-        - Provided administrative support to office operations<br />
-        - Maintained records and assisted in office management tasks<br />
-        - Communicated effectively within the team and with external contacts</li>
+      <div class="section">
+        <h2><i class="fas fa-briefcase"></i> Professional Experience</h2>
+        <div class="experience-item">
+          <div class="experience-title">Admin Assistant – The Citizens Foundation (NGO)</div>
+          <div class="experience-details">
+            • Provided administrative support to office operations<br>
+            • Maintained records and assisted in office management tasks<br>
+            • Communicated effectively within the team and with external contacts
+          </div>
+        </div>
+        <div class="experience-item">
+          <div class="experience-title">Content Creator – TikTok (Gaming Niche)</div>
+          <div class="experience-details">
+            • Managed a TikTok gaming channel with 20,000+ followers<br>
+            • Edited and published engaging gaming content<br>
+            • Analyzed audience engagement and trends for growth
+          </div>
+        </div>
+      </div>
 
-        <li><strong>Content Creator – TikTok (Gaming Niche)</strong><br />
-        - Managed a TikTok gaming channel with 20,000+ followers<br />
-        - Edited and published engaging gaming content<br />
-        - Analyzed audience engagement and trends for growth</li>
-      </ul>
-    </div>
+      <div class="section">
+        <h2><i class="fas fa-cogs"></i> Skills</h2>
+        <div class="skills-grid">
+          <div class="skill-item">Microsoft Office Suite</div>
+          <div class="skill-item">Adobe Creative Cloud</div>
+          <div class="skill-item">Graphic Design</div>
+          <div class="skill-item">Video Editing</div>
+          <div class="skill-item">Web Development</div>
+          <div class="skill-item">Computer Literacy</div>
+          <div class="skill-item">Administrative Support</div>
+          <div class="skill-item">Customer Service</div>
+          <div class="skill-item">Management</div>
+          <div class="skill-item">Driving</div>
+        </div>
+      </div>
 
-    <div class="section">
-      <h2>Skills</h2>
-      <ul class="skills-list">
-        <li>Microsoft Office Suite</li>
-        <li>Adobe Creative Cloud (Basic)</li>
-        <li>Basic Graphic Design</li>
-        <li>Basic Video Editing</li>
-        <li>Basic Web Development</li>
-        <li>Computer Literacy</li>
-        <li>Administrative Support</li>
-        <li>Customer Service</li>
-        <li>Management</li>
-        <li>Driving</li>
-      </ul>
-    </div>
+      <div class="section">
+        <h2><i class="fas fa-language"></i> Languages</h2>
+        <div class="language-item">
+          <div class="language-flag">UR</div>
+          <div>
+            <strong>Urdu</strong> - Native
+          </div>
+        </div>
+        <div class="language-item">
+          <div class="language-flag">EN</div>
+          <div>
+            <strong>English</strong> - Understands well; basic speaking ability
+          </div>
+        </div>
+      </div>
 
-    <div class="section">
-      <h2>Languages</h2>
-      <ul>
-        <li>Urdu – Native</li>
-        <li>English – Understands well; basic speaking ability</li>
-      </ul>
-    </div>
-
-    <div class="footer">
-      © 2025 Aleem Ahmad | Designed for web presentation
+      <div class="footer">
+        <p>© 2025 Aleem Ahmad | Designed for web presentation</p>
+      </div>
     </div>
   </div>
+
+  <script>
+    // Add smooth scrolling and entrance animations
+    const observerOptions = {
+      threshold: 0.1,
+      rootMargin: '0px 0px -50px 0px'
+    };
+
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.style.animation = 'slideUp 0.6s ease-out forwards';
+        }
+      });
+    }, observerOptions);
+
+    // Observe all sections
+    document.querySelectorAll('.section').forEach(section => {
+      observer.observe(section);
+    });
+
+    // Add click animation to skill items
+    document.querySelectorAll('.skill-item').forEach(skill => {
+      skill.addEventListener('click', function() {
+        this.style.animation = 'none';
+        setTimeout(() => {
+          this.style.animation = 'pulse 0.5s ease-in-out';
+        }, 10);
+      });
+    });
+
+    // Add typing effect to name
+    const nameElement = document.querySelector('.name-section h1');
+    const originalText = nameElement.textContent;
+    nameElement.textContent = '';
+    
+    let i = 0;
+    const typeWriter = () => {
+      if (i < originalText.length) {
+        nameElement.textContent += originalText.charAt(i);
+        i++;
+        setTimeout(typeWriter, 100);
+      }
+    };
+    
+    setTimeout(typeWriter, 500);
+  </script>
 </body>
 </html>
